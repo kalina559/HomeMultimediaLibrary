@@ -6,10 +6,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using HomeMultimediaLibrary.Models;
+using HomeMultimediaLibrary.Pages;
 
 namespace HomeMultimediaLibrary.Account
 {
-    public partial class Register : Page
+    public partial class Register: BasePage
     {
         protected void CreateUser_Click(object sender, EventArgs e)
         {

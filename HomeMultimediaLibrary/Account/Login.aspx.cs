@@ -5,10 +5,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using HomeMultimediaLibrary.Models;
+using HomeMultimediaLibrary.Pages;
 
 namespace HomeMultimediaLibrary.Account
 {
-    public partial class Login : Page
+    public partial class Login: BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

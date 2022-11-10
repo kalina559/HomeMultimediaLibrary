@@ -5,10 +5,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using HomeMultimediaLibrary.Models;
+using HomeMultimediaLibrary.Pages;
 
 namespace HomeMultimediaLibrary.Account
 {
-    public partial class Confirm : Page
+    public partial class Confirm: BasePage
     {
         protected string StatusMessage
         {

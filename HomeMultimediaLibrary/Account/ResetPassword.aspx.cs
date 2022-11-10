@@ -6,10 +6,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using HomeMultimediaLibrary.Models;
+using HomeMultimediaLibrary.Pages;
 
 namespace HomeMultimediaLibrary.Account
 {
-    public partial class ResetPassword : Page
+    public partial class ResetPassword: BasePage
     {
         protected string StatusMessage
         {

@@ -1,0 +1,3 @@
+﻿<asp:Label runat="server" SkinId="labelTxt" BackColor="Green" ></asp:Label>
+<asp:Button runat="server" SkinId="buttonTxt" BackColor="Red" ></asp:Button>
+<asp:Panel runat="server" SkinId="backgroundColor" BackColor="Gray" ></asp:Panel>
