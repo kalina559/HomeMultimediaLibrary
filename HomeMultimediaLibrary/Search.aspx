@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Contents" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="HomeMultimediaLibrary.Search" %>
+﻿<%@ Page Title="Contents" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="HomeMultimediaLibrary.Search"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
@@ -6,7 +6,7 @@
         <h3>Here you can have a look into the contents of your multimedia library.</h3>
     </div>
     <div class="search-results-div">
-        <asp:ListView ID="ItemListView" runat="server" ItemPlaceholderID="itemPlaceholder" >
+        <asp:ListView ID="ItemListView" runat="server" ItemPlaceholderID="itemPlaceholder" OnItemEditing="OnItemEditing" OnItemDataBound="OnItemDataBound" OnItemCanceling="OnItemCanceling" OnItemUpdating="OnItemUpdating">
             <LayoutTemplate>
                 <table class="library-item-table">
                     <tr>
@@ -47,7 +47,25 @@
                 <td>
                     <%# Eval("Author") %>
                 </td>
+                <td>
+                    <asp:Button ID="editButton" runat="server" Text='Edit' CommandName="Edit" />
+                </td>
             </ItemTemplate>
+            <EditItemTemplate>
+                <td>
+                    <asp:TextBox ID="editIdText" runat="server" Enabled="false" Text='<%# Eval("Id") %>'></asp:TextBox>
+                </td>
+                <td>
+                    <asp:TextBox ID="editNameText" runat="server" Text='<%# Eval("Name") %>'></asp:TextBox>
+                </td>
+                <td>
+                    <asp:TextBox ID="authorLabel" runat="server" Text='<%# Eval("Author") %>'></asp:TextBox>
+                </td>                
+                <td>
+                    <asp:Button ID="updateButton" runat="server" Text='Update' CommandName="Update" />
+                    <asp:Button ID="cancelButton" runat="server" Text='Cancel' CommandName="Cancel" />
+                </td>
+            </EditItemTemplate>
         </asp:ListView>
     </div>
 </asp:Content>
