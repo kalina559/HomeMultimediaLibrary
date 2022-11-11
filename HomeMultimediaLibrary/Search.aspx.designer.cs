@@ -11,7 +11,7 @@ namespace HomeMultimediaLibrary
 {
 
 
-    public partial class Contents
+    public partial class Search
     {
 
         /// <summary>

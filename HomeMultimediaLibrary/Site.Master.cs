@@ -52,6 +52,12 @@ namespace HomeMultimediaLibrary
 
         protected void master_Page_PreLoad(object sender, EventArgs e)
         {
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                searchTab.Visible = true;
+                addItemTab.Visible = true;
+            }
+
             if (!IsPostBack)
             {
                 // Set Anti-XSRF token

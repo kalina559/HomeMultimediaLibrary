@@ -9,15 +9,10 @@ using System.Web.UI.WebControls;
 
 namespace HomeMultimediaLibrary
 {
-    public partial class Contents: BasePage
+    public partial class AddItem: BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            using (var context = new ApplicationDbContext())
-            {
-                ItemListView.DataSource = context.Items.OrderByDescending(it => it.Id).Take(50).ToList();
-                ItemListView.DataBind();
-            }
         }
     }
 }

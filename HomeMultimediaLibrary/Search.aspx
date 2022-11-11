@@ -1,8 +1,8 @@
-﻿<%@ Page Title="Contents" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contents.aspx.cs" Inherits="HomeMultimediaLibrary.Contents" %>
+﻿<%@ Page Title="Contents" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="HomeMultimediaLibrary.Search" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        <h2><%: Title %>.</h2>
+        <h2>Search</h2>
         <h3>Here you can have a look into the contents of your multimedia library.</h3>
     </div>
     <div class="search-results-div">

@@ -18,6 +18,9 @@ namespace HomeMultimediaLibrary.Pages
             if (user?.Theme != null)
             {
                 Page.Theme = user.Theme;
+            } else
+            {
+                Page.Theme = "Light";
             }
         }
     }

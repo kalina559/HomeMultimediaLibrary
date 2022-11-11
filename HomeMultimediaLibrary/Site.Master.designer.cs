@@ -7,11 +7,31 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HomeMultimediaLibrary {
-    
-    
-    public partial class SiteMaster {
-        
+namespace HomeMultimediaLibrary
+{
+
+
+    public partial class SiteMaster
+    {
+
+        /// <summary>
+        /// searchTab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor searchTab;
+
+        /// <summary>
+        /// addItemTab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor addItemTab;
+
         /// <summary>
         /// MainContent control.
         /// </summary>

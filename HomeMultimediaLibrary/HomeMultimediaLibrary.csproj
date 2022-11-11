@@ -164,7 +164,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Contents.aspx" />
+    <Content Include="AddItem.aspx" />
+    <Content Include="Search.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
@@ -343,12 +344,19 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="Contents.aspx.cs">
-      <DependentUpon>Contents.aspx</DependentUpon>
+    <Compile Include="AddItem.aspx.cs">
+      <DependentUpon>AddItem.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contents.aspx.designer.cs">
-      <DependentUpon>Contents.aspx</DependentUpon>
+    <Compile Include="AddItem.aspx.designer.cs">
+      <DependentUpon>AddItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
