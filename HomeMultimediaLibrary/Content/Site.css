@@ -39,6 +39,7 @@ input[type="select"] {
     .jumbotron {
         margin-top: 20px;
     }
+
     .body-content {
         padding: 0;
     }
@@ -60,4 +61,24 @@ input[type="select"] {
 
 .background-panel {
     height: 100%
+}
+
+.library-item-class {
+    background-color: aqua;
+    padding: 10px;
+}
+
+.library-item-table {
+}
+
+.search-results-div {
+    display: grid
+}
+
+td, th {
+    padding: 10px;
+}
+
+.result-pages {
+    text-align: center
 }

@@ -57,7 +57,6 @@ namespace HomeMultimediaLibrary.Models
 
             // we want to apply the migrations on startup
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
-
         }
 
         public static ApplicationDbContext Create()
