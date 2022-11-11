@@ -145,7 +145,9 @@ namespace HomeMultimediaLibrary.Account
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var user = manager.FindById(User.Identity.GetUserId());
 
-            user.Theme = PreferredColor.SelectedItem.Value;            
+            user.Theme = PreferredColor.SelectedItem.Value;
+
+            manager.Update(user);
         }
     }
 }

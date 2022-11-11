@@ -12,15 +12,12 @@ namespace HomeMultimediaLibrary.Pages
     {
         protected void Page_PreInit(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var user = manager.FindById(User.Identity.GetUserId());
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var user = manager.FindById(User.Identity.GetUserId());
 
-                if (user?.Theme != null)
-                {
-                    Page.Theme = user.Theme;
-                }
+            if (user?.Theme != null)
+            {
+                Page.Theme = user.Theme;
             }
         }
     }
