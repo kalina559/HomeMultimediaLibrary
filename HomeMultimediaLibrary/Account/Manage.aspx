@@ -25,7 +25,7 @@
                     <dt>Preferred theme:</dt>
                     <dd>
                         <asp:DropDownList ID="PreferredColor" runat="server"></asp:DropDownList>
-                        <asp:Button SkinId="buttonTxt" runat="server" OnClick="SetPreferredColor_Click" Text="Zapisz" CssClass="btn btn-default save-button"/>
+                        <asp:Button SkinId="buttonTxt" runat="server" OnClick="SetPreferredColor_Click" Text="Save" CssClass="btn btn-default save-button"/>
                     </dd>
                 </dl>
             </div>
