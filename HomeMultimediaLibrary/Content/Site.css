@@ -1,7 +1,14 @@
 ﻿/* Move down content because we have a fixed navbar that is 50px tall */
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    /*padding-top: 50px;
+    padding-bottom: 20px;*/
+    height: 100%;
+    background-image: url('../Resources/library.png');
+    background-size: 100% 100%
+}
+
+html {
+    height: 100%
 }
 
 /* Wrapping element */
@@ -49,4 +56,8 @@ input[type="select"] {
     padding-bottom: 0px;
     padding-left: 12px;
     vertical-align: baseline
+}
+
+.background-panel {
+    height: 100%
 }
