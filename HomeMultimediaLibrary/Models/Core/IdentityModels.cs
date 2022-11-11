@@ -7,6 +7,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HomeMultimediaLibrary.Models;
+using System.Data.Entity;
+using HomeMultimediaLibrary.Models.Entities;
+using HomeMultimediaLibrary.Models.Entities.Items;
+using System.Data.Entity.Migrations;
+using HomeMultimediaLibrary.Migrations;
 
 namespace HomeMultimediaLibrary.Models
 {
@@ -31,9 +36,28 @@ namespace HomeMultimediaLibrary.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<ReadingItem> ReadingItems { get; set; }
+        public DbSet<MultimediaItem> MultimediaItems { get; set; }
+        public DbSet<BookItem> BookItems { get; set; }
+        public DbSet<MagazineItem> MagazineItems { get; set; }
+        public DbSet<FilmItem> FilmItems { get; set; }
+        public DbSet<AlbumItem> AlbumItems { get; set; }
+
         public ApplicationDbContext()
             : base("HomeMultimediaLibrary", throwIfV1Schema: false)
         {
+            
+            var config = new DbMigrationsConfiguration<ApplicationDbContext>
+            {
+                AutomaticMigrationsEnabled = false,
+                CommandTimeout = 0
+            };
+
+            // we want to apply the migrations on startup
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+
         }
 
         public static ApplicationDbContext Create()

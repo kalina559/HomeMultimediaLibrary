@@ -379,8 +379,21 @@
     <Compile Include="Migrations\202211101922182_addAspNetUserTheme.designer.cs">
       <DependentUpon>202211101922182_addAspNetUserTheme.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211111735530_AddItemsTables.cs" />
+    <Compile Include="Migrations\202211111735530_AddItemsTables.designer.cs">
+      <DependentUpon>202211111735530_AddItemsTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Core\IdentityModels.cs" />
+    <Compile Include="Models\Entities\Items\AlbumItem.cs" />
+    <Compile Include="Models\Entities\Items\BookItem.cs" />
+    <Compile Include="Models\Entities\Items\EntityBase.cs" />
+    <Compile Include="Models\Entities\Image.cs" />
+    <Compile Include="Models\Entities\Items\FilmItem.cs" />
+    <Compile Include="Models\Entities\Items\Item.cs" />
+    <Compile Include="Models\Entities\Items\MagazineItem.cs" />
+    <Compile Include="Models\Entities\Items\MultimediaItem.cs" />
+    <Compile Include="Models\Entities\Items\ReadingItem.cs" />
     <Compile Include="Pages\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -429,6 +442,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211101922182_addAspNetUserTheme.resx">
       <DependentUpon>202211101922182_addAspNetUserTheme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211111735530_AddItemsTables.resx">
+      <DependentUpon>202211111735530_AddItemsTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

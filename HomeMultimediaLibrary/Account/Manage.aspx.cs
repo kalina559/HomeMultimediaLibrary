@@ -10,10 +10,11 @@ using Microsoft.Owin.Security;
 using Owin;
 using HomeMultimediaLibrary.Models;
 using System.IO;
+using HomeMultimediaLibrary.Pages;
 
 namespace HomeMultimediaLibrary.Account
 {
-    public partial class Manage : System.Web.UI.Page
+    public partial class Manage : BasePage
     {
         protected string SuccessMessage
         {
