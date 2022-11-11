@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HomeMultimediaLibrary.Account {
-    
-    
-    public partial class Manage {
-        
+namespace HomeMultimediaLibrary.Account
+{
+
+
+    public partial class Manage
+    {
+
         /// <summary>
         /// successMessage control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace HomeMultimediaLibrary.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder successMessage;
-        
+
         /// <summary>
         /// ChangePassword control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace HomeMultimediaLibrary.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink ChangePassword;
-        
+
         /// <summary>
         /// CreatePassword control.
         /// </summary>
@@ -38,14 +40,14 @@ namespace HomeMultimediaLibrary.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink CreatePassword;
-        
+
         /// <summary>
-        /// PhoneNumber control.
+        /// PreferredColor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PhoneNumber;
+        protected global::System.Web.UI.WebControls.DropDownList PreferredColor;
     }
 }

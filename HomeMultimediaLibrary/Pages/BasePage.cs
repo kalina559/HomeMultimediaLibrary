@@ -1,5 +1,6 @@
 ﻿using HomeMultimediaLibrary.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,10 @@ namespace HomeMultimediaLibrary.Pages
     {
         protected void Page_PreInit(object sender, EventArgs e)
         {
-            using (var context = new ApplicationDbContext())
+            if (!IsPostBack)
             {
-                var currentUserId = Context.User.Identity.GetUserId();
-                var user = context.Users.Where(u => u.Id == currentUserId).SingleOrDefault();
+                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var user = manager.FindById(User.Identity.GetUserId());
 
                 if (user?.Theme != null)
                 {

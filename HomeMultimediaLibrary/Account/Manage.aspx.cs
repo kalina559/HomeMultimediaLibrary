@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
 using HomeMultimediaLibrary.Models;
+using System.IO;
 
 namespace HomeMultimediaLibrary.Account
 {
@@ -34,7 +35,7 @@ namespace HomeMultimediaLibrary.Account
         public int LoginsCount { get; set; }
 
         protected void Page_Load()
-        {
+        {         
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
             HasPhoneNumber = String.IsNullOrEmpty(manager.GetPhoneNumber(User.Identity.GetUserId()));
@@ -76,6 +77,19 @@ namespace HomeMultimediaLibrary.Account
                         : message == "RemovePhoneNumberSuccess" ? "Phone number was removed"
                         : String.Empty;
                     successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
+                }
+
+                var path = Server.MapPath("~/App_Themes");
+                var list = Directory.GetDirectories(path)
+                                    .Select(folder => new DirectoryInfo(folder).Name)
+                                    .ToList();
+                PreferredColor.DataSource = list;
+                PreferredColor.DataBind();
+
+                var user = manager.FindById(User.Identity.GetUserId());
+                if (user?.Theme != null)
+                {
+                    PreferredColor.Items.FindByValue(user.Theme).Selected = true;
                 }
             }
         }
@@ -123,6 +137,14 @@ namespace HomeMultimediaLibrary.Account
             manager.SetTwoFactorEnabled(User.Identity.GetUserId(), true);
 
             Response.Redirect("/Account/Manage");
+        }
+
+        protected void SetPreferredColor_Click(object sender, EventArgs e)
+        {
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var user = manager.FindById(User.Identity.GetUserId());
+
+            user.Theme = PreferredColor.SelectedItem.Value;            
         }
     }
 }
