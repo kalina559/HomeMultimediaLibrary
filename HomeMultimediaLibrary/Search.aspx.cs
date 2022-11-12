@@ -1,5 +1,6 @@
 ﻿using HomeMultimediaLibrary.Models;
 using HomeMultimediaLibrary.Models.Entities;
+using HomeMultimediaLibrary.Models.Entities.Items;
 using HomeMultimediaLibrary.Pages;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace HomeMultimediaLibrary
 
         protected override void OnPreRender(EventArgs e)
         {
-            rebindTable();
+            RebindTable();
             base.OnPreRender(e);
         }
 
@@ -24,7 +25,11 @@ namespace HomeMultimediaLibrary
         {
             if (!IsPostBack)
             {
-                LoadDatabaseTable();
+                // initially just take 50 newest items
+                LoadDatabaseTable(50);
+                List<String> types = new List<String> { TYPE_ALL, TYPE_BOOK, TYPE_MAGAZINE, TYPE_FILM, TYPE_ALBUM };
+                itemTypeDropDown.DataSource = types;
+                itemTypeDropDown.DataBind();
             }
         }
 
@@ -36,7 +41,7 @@ namespace HomeMultimediaLibrary
         {
             ItemListView.EditIndex = e.NewEditIndex;
             ItemListView.DataSource = items;
-            rebindTable();
+            RebindTable();
         }
 
         protected void OnItemUpdating(object sender, ListViewUpdateEventArgs e)
@@ -59,26 +64,63 @@ namespace HomeMultimediaLibrary
             }
 
             ItemListView.EditIndex = -1;
-            rebindTable();
+            RebindTable();
         }
 
         protected void OnItemCanceling(object sender, ListViewCancelEventArgs e)
         {
             ItemListView.EditIndex = -1;
-            rebindTable();
+            RebindTable();
         }
 
-        private void LoadDatabaseTable()
+        private void LoadDatabaseTable(int? itemsToTake, IEnumerable<string> names = null, IEnumerable<string> authors = null)
         {
             using (var context = new ApplicationDbContext())
             {
-                items = context.Items.OrderByDescending(it => it.Id).Take(50).ToList();
+                if (itemsToTake.HasValue)
+                {
+                    items = context.Items.OrderByDescending(it => it.Id).Take((int)itemsToTake);
+                } else
+                {
+                    items = context.Items.OrderByDescending(it => it.Id);
+                }
+
+                items = FilterByType(items);
+
+                items = items
+                    .Where(item => names != null ? names.Contains(item.Name) : true)
+                    .Where(item => authors != null ? authors.Contains(item.Author) : true)
+                    .ToList();
+
                 ItemListView.DataSource = items;
                 ItemListView.DataBind();
             }
         }
 
-        private void rebindTable()
+        private IEnumerable<Item> FilterByType(IEnumerable<Item> items)
+        {
+            if(itemTypeDropDown.SelectedItem == null)
+            {
+                return items;
+            }
+            switch (itemTypeDropDown.SelectedItem.Value)
+            {
+                case TYPE_ALL:
+                    return items;
+                case TYPE_BOOK:
+                    return items.OfType<BookItem>();
+                case TYPE_MAGAZINE:
+                    return items.OfType<MagazineItem>();
+                case TYPE_FILM:
+                    return items.OfType<FilmItem>();
+                case TYPE_ALBUM:
+                    return items.OfType<AlbumItem>();
+                default:
+                    throw new Exception("Unknown item type");
+            }
+        }
+
+        private void RebindTable()
         {
             ItemListView.DataSource = items;
             ItemListView.DataBind();
@@ -92,8 +134,23 @@ namespace HomeMultimediaLibrary
                 pager.SetPageProperties(0, pager.PageSize, true);
             }
 
-            LoadDatabaseTable();
-            rebindTable();
+            LoadDatabaseTable(null);
+            RebindTable();
+        }
+
+        protected void OnSetFiltersClick(object sender, EventArgs e)
+        {
+            if(setFiltersButton.Text == "Set filters")
+            {
+                filtersLayout.Visible = true;
+                setFiltersButton.Text = "Close filters";
+
+            }
+            else if (setFiltersButton.Text == "Close filters")
+            {
+                filtersLayout.Visible = false;
+                setFiltersButton.Text = "Set filters";
+            }
         }
     }
 }

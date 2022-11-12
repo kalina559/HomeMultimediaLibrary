@@ -6,8 +6,16 @@
         <h3>Here you can have a look into the contents of your multimedia library.</h3>
     </div>
     <div class="search-results-div">
+        <!-- filters -->
         <div>
-            <asp:Button SkinID="searchButton" runat="server" OnClick="OnSearchButtonClick" Text="Search" CssClass="btn btn-default" />
+            <asp:Panel ID="filtersLayout" runat="server">
+                <asp:Label runat="server" AssociatedControlID="itemTypeDropDown" Text="Item type:"></asp:Label>
+                <asp:DropDownList ID="itemTypeDropDown" runat="server" CssClass="form-control item-input" AutoPostBack="true"></asp:DropDownList>
+
+            </asp:Panel>
+            <asp:Button SkinID="buttonTxt" ID="setFiltersButton" runat="server" OnClick="OnSetFiltersClick" Text="Set filters" CssClass="btn btn-default" />
+
+            <asp:Button SkinID="buttonTxt" ID="searchButton" runat="server" OnClick="OnSearchButtonClick" Text="Search" CssClass="btn btn-default" />
         </div>
         <asp:ListView ID="ItemListView" runat="server" ItemPlaceholderID="itemPlaceholder" OnItemEditing="OnItemEditing" OnItemDataBound="OnItemDataBound" OnItemCanceling="OnItemCanceling" OnItemUpdating="OnItemUpdating">
             <LayoutTemplate>

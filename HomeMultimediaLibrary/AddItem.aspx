@@ -37,7 +37,7 @@
         <asp:Label runat="server" AssociatedControlID="tableOfContentsTextBox" Text="Table of contents:"></asp:Label>
         <asp:TextBox ID="tableOfContentsTextBox" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox>
 
-        <asp:Button SkinID="addItemButton" runat="server" OnClick="AddItemClick" Text="Add" CssClass="btn btn-default save-button" />
+        <asp:Button SkinID="buttonTxt" ID="addItemButton" runat="server" OnClick="AddItemClick" Text="Add" CssClass="btn btn-default save-button" />
 
     </div>
 </asp:Content>

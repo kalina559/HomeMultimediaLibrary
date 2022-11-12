@@ -15,11 +15,6 @@ namespace HomeMultimediaLibrary
 {
     public partial class AddItem : BasePage
     {
-        private const string TYPE_BOOK = "Book";
-        private const string TYPE_MAGAZINE = "Magazine";
-        private const string TYPE_FILM = "Film";
-        private const string TYPE_ALBUM = "Album";
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
