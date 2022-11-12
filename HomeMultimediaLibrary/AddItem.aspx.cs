@@ -6,6 +6,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -121,7 +125,8 @@ namespace HomeMultimediaLibrary
                 AddedByUserId = user.Id,
                 ISBN = ISBNTextBox.Text,
                 Pages = Convert.ToInt32(pagesTextBox.Text),
-                Keywords = keywordsTextBox.Text
+                Keywords = keywordsTextBox.Text,
+                Image = imagePreview.ImageUrl != null ? new Models.Entities.Image { Base64 = imagePreview.ImageUrl } : null
             };
 
             context.BookItems.Add(item);
@@ -138,7 +143,8 @@ namespace HomeMultimediaLibrary
                 AddedByUserId = user.Id,
                 ISBN = ISBNTextBox.Text,
                 Pages = Convert.ToInt32(pagesTextBox.Text),
-                Keywords = keywordsTextBox.Text
+                Keywords = keywordsTextBox.Text,
+                Image = imagePreview.ImageUrl != null ? new Models.Entities.Image { Base64 = imagePreview.ImageUrl } : null
             };
 
             context.MagazineItems.Add(item);
@@ -154,7 +160,8 @@ namespace HomeMultimediaLibrary
                 Summary = summaryTextBox.Text,
                 AddedByUserId = user.Id,
                 LengthMinutes = Convert.ToInt32(lengthMinutesTextBox.Text),
-                Keywords = keywordsTextBox.Text
+                Keywords = keywordsTextBox.Text,
+                Image = imagePreview.ImageUrl != null ? new Models.Entities.Image { Base64 = imagePreview.ImageUrl } : null
             };
 
             context.FilmItems.Add(item);
@@ -170,10 +177,39 @@ namespace HomeMultimediaLibrary
                 Summary = summaryTextBox.Text,
                 AddedByUserId = user.Id,
                 LengthMinutes = Convert.ToInt32(lengthMinutesTextBox.Text),
-                Keywords = keywordsTextBox.Text
+                Keywords = keywordsTextBox.Text,
+                Image = imagePreview.ImageUrl != null ? new Models.Entities.Image { Base64 = imagePreview.ImageUrl } : null
             };
 
             context.AlbumItems.Add(item);
+        }
+
+        protected void OnImagePreviewClick(object sender, EventArgs e)
+        {
+            if (imageFileUpload.FileBytes != null && imageFileUpload.FileBytes.Count() > 0)
+            {
+                byte[] byteArray;
+                using (MemoryStream ms = new MemoryStream(imageFileUpload.FileBytes))
+                {
+                    var image = System.Drawing.Image.FromStream(ms);
+                    var resizedImage = resizeImage(image, 400);
+
+                    ImageConverter _imageConverter = new ImageConverter();
+                    byte[] xByte = (byte[])_imageConverter.ConvertTo(resizedImage, typeof(byte[]));
+                    byteArray = xByte;
+
+                    ms.Close();
+                }
+
+                imagePreview.ImageUrl = "data:image;base64," + Convert.ToBase64String(byteArray);
+            }
+        }
+
+        public static System.Drawing.Image resizeImage(System.Drawing.Image imgToResize, int newHeight)
+        {
+            double aspectRatio = imgToResize.Width / imgToResize.Height;
+            int newWidth = (int)Math.Ceiling(newHeight * aspectRatio);
+            return (System.Drawing.Image)(new Bitmap(imgToResize, new Size(newWidth, newHeight)));
         }
     }
 }

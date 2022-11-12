@@ -132,6 +132,33 @@ namespace HomeMultimediaLibrary
         protected global::System.Web.UI.WebControls.TextBox tableOfContentsTextBox;
 
         /// <summary>
+        /// imageFileUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload imageFileUpload;
+
+        /// <summary>
+        /// ImagePreviewButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ImagePreviewButton;
+
+        /// <summary>
+        /// imagePreview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imagePreview;
+
+        /// <summary>
         /// addItemButton control.
         /// </summary>
         /// <remarks>

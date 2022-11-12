@@ -19,7 +19,7 @@ namespace HomeMultimediaLibrary.Models.Entities
         [Required(AllowEmptyStrings = false)]
         public string Publisher { get; set; }
 
-        public virtual Image ImageId { get; set; }
+        public virtual Image Image { get; set; }
 
         [Required(AllowEmptyStrings = false)]
         public string Summary { get; set; }

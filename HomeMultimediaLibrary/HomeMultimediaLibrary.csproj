@@ -367,6 +367,10 @@
     <Compile Include="Migrations\202211121823444_AddNotNullFields.designer.cs">
       <DependentUpon>202211121823444_AddNotNullFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211122145376_CorrectedImageColumnName.cs" />
+    <Compile Include="Migrations\202211122145376_CorrectedImageColumnName.designer.cs">
+      <DependentUpon>202211122145376_CorrectedImageColumnName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -481,6 +485,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211121823444_AddNotNullFields.resx">
       <DependentUpon>202211121823444_AddNotNullFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211122145376_CorrectedImageColumnName.resx">
+      <DependentUpon>202211122145376_CorrectedImageColumnName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
