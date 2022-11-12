@@ -14,6 +14,12 @@ namespace HomeMultimediaLibrary
     {
         private static IEnumerable<Item> items;
 
+        protected override void OnPreRender(EventArgs e)
+        {
+            rebindTable();
+            base.OnPreRender(e);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             GetDatabaseTable();
