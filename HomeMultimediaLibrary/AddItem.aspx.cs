@@ -48,10 +48,13 @@ namespace HomeMultimediaLibrary
                         AddBookItem(context, user);
                         break;
                     case TYPE_MAGAZINE:
+                        AddMagazineItem(context, user);
                         break;
                     case TYPE_FILM:
+                        AddFilmItem(context, user);
                         break;
                     case TYPE_ALBUM:
+                        AddAlbumItem(context, user);
                         break;
                     default:
                         throw new Exception("Unknown item type");
@@ -99,6 +102,19 @@ namespace HomeMultimediaLibrary
             return type == TYPE_FILM || type == TYPE_ALBUM;
         }
 
+        private void ClearInputs(ControlCollection ctrls)
+        {
+            foreach (Control ctrl in ctrls)
+            {
+                if (ctrl is TextBox)
+                    ((TextBox)ctrl).Text = string.Empty;
+                else if (ctrl is DropDownList)
+                    ((DropDownList)ctrl).ClearSelection();
+
+                ClearInputs(ctrl.Controls);
+            }
+        }
+
         private void AddBookItem(ApplicationDbContext context, ApplicationUser user)
         {
             BookItem item = new BookItem
@@ -115,17 +131,50 @@ namespace HomeMultimediaLibrary
             context.BookItems.Add(item);
         }
 
-        private void ClearInputs(ControlCollection ctrls)
+        private void AddMagazineItem(ApplicationDbContext context, ApplicationUser user)
         {
-            foreach (Control ctrl in ctrls)
+            MagazineItem item = new MagazineItem
             {
-                if (ctrl is TextBox)
-                    ((TextBox)ctrl).Text = string.Empty;
-                else if (ctrl is DropDownList)
-                    ((DropDownList)ctrl).ClearSelection();
+                Name = nameTextBox.Text,
+                Author = authorTextBox.Text,
+                Issuer = publisherTextBox.Text,
+                Summary = summaryTextBox.Text,
+                AddedByUserId = user.Id,
+                ISBN = ISBNTextBox.Text,
+                Pages = Convert.ToInt32(pagesTextBox.Text)
+            };
 
-                ClearInputs(ctrl.Controls);
-            }
+            context.MagazineItems.Add(item);
+        }
+
+        private void AddFilmItem(ApplicationDbContext context, ApplicationUser user)
+        {
+            FilmItem item = new FilmItem
+            {
+                Name = nameTextBox.Text,
+                Author = authorTextBox.Text,
+                Issuer = publisherTextBox.Text,
+                Summary = summaryTextBox.Text,
+                AddedByUserId = user.Id,
+                LengthMinutes = Convert.ToInt32(lengthMinutesTextBox.Text)
+            };
+
+            context.FilmItems.Add(item);
+        }
+
+        private void AddAlbumItem(ApplicationDbContext context, ApplicationUser user)
+        {
+            AlbumItem item = new AlbumItem
+            {
+                Name = nameTextBox.Text,
+                Author = authorTextBox.Text,
+                Issuer = publisherTextBox.Text,
+                Summary = summaryTextBox.Text,
+                AddedByUserId = user.Id,
+                LengthMinutes = Convert.ToInt32(lengthMinutesTextBox.Text)
+            };
+
+            context.AlbumItems.Add(item);
         }
     }
 }
