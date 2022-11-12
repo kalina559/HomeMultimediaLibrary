@@ -4,6 +4,7 @@ using HomeMultimediaLibrary.Models.Entities.Items;
 using HomeMultimediaLibrary.Pages;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -35,6 +36,11 @@ namespace HomeMultimediaLibrary
 
         protected void OnItemDataBound(object sender, ListViewItemEventArgs e)
         {
+            var image = e.Item.FindControl("itemImage") as System.Web.UI.WebControls.Image;
+            if (image != null)
+            {
+                image.ImageUrl = items.ElementAt(e.Item.DataItemIndex).Image?.Base64;
+            }
         }
 
         protected void OnItemEditing(object sender, ListViewEditEventArgs e)
@@ -104,11 +110,14 @@ namespace HomeMultimediaLibrary
             {
                 if (itemsToTake.HasValue)
                 {
-                    items = context.Items.OrderByDescending(it => it.Id).Take((int)itemsToTake);
+                    items = context.Items
+                        .Include(item => item.Image)
+                        .OrderByDescending(it => it.Id).Take((int)itemsToTake);
                 }
                 else
                 {
-                    items = context.Items.OrderByDescending(it => it.Id);
+                    items = context.Items
+                        .OrderByDescending(it => it.Id);
                 }
 
                 items = ApplyFilters(items);

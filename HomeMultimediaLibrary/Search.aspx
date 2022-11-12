@@ -46,6 +46,8 @@
                             </th>
                             <th>Summary
                             </th>
+                            <th>Image
+                            </th>
                         </tr>
                         <asp:PlaceHolder runat="server" ID="groupPlaceHolder"></asp:PlaceHolder>
                         <tr>
@@ -82,6 +84,9 @@
                     </td>
                     <td>
                         <%# Eval("Summary") %>
+                    </td>
+                    <td>
+                        <asp:Image CssClass="item-image" ID="itemImage" runat="server" />
                     </td>
                     <td>
                         <asp:Button ID="editButton" runat="server" Text='Edit' CommandName="Edit" />

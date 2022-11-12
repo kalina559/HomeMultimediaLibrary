@@ -38,12 +38,12 @@
         <asp:TextBox ID="tableOfContentsTextBox" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox>
 
         <div>
-            <asp:FileUpload AutoPostBack="true" runat="server" ID="imageFileUpload" accept=".png,.jpg,.jpeg" />
+            <asp:FileUpload runat="server" ID="imageFileUpload" accept=".png,.jpg,.jpeg" />
             <asp:Button ID="ImagePreviewButton" runat="server" Text="Preview Image" OnClick="OnImagePreviewClick" />
         </div>
 
         <div>
-            <asp:Image AutoPostBack="true" runat="server" ID="imagePreview" />
+            <asp:Image runat="server" ID="imagePreview" />
         </div>
 
         <asp:Button SkinID="buttonTxt" ID="addItemButton" runat="server" OnClick="AddItemClick" Text="Add" CssClass="btn btn-default save-button" />
