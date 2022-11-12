@@ -22,7 +22,10 @@ namespace HomeMultimediaLibrary
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            GetDatabaseTable();
+            if (!IsPostBack)
+            {
+                LoadDatabaseTable();
+            }
         }
 
         protected void OnItemDataBound(object sender, ListViewItemEventArgs e)
@@ -65,16 +68,13 @@ namespace HomeMultimediaLibrary
             rebindTable();
         }
 
-        private void GetDatabaseTable()
+        private void LoadDatabaseTable()
         {
-            if (!IsPostBack)
+            using (var context = new ApplicationDbContext())
             {
-                using (var context = new ApplicationDbContext())
-                {
-                    items = context.Items.OrderByDescending(it => it.Id).Take(50).ToList();
-                    ItemListView.DataSource = items;
-                    ItemListView.DataBind();
-                }
+                items = context.Items.OrderByDescending(it => it.Id).Take(50).ToList();
+                ItemListView.DataSource = items;
+                ItemListView.DataBind();
             }
         }
 
@@ -82,6 +82,18 @@ namespace HomeMultimediaLibrary
         {
             ItemListView.DataSource = items;
             ItemListView.DataBind();
+        }
+
+        protected void OnSearchButtonClick(object sender, EventArgs e)
+        {
+            DataPager pager = ItemListView.FindControl("DataPager") as DataPager;
+            if (pager != null)
+            {
+                pager.SetPageProperties(0, pager.PageSize, true);
+            }
+
+            LoadDatabaseTable();
+            rebindTable();
         }
     }
 }

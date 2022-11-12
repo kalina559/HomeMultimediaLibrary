@@ -31,7 +31,7 @@
         <asp:Label runat="server" AssociatedControlID="summaryTextBox" Text="Summary:"></asp:Label>
         <asp:TextBox ID="summaryTextBox" TextMode="MultiLine" runat="server" CssClass="form-control"></asp:TextBox>
 
-        <asp:Label runat="server" AssociatedControlID="keywordsTextBox" Text="Keywords:"></asp:Label>
+        <asp:Label runat="server" AssociatedControlID="keywordsTextBox" Text="Keywords (separate with a comma):"></asp:Label>
         <asp:TextBox ID="keywordsTextBox" runat="server" CssClass="form-control"></asp:TextBox>
 
         <asp:Label runat="server" AssociatedControlID="tableOfContentsTextBox" Text="Table of contents:"></asp:Label>
