@@ -15,6 +15,8 @@ namespace HomeMultimediaLibrary
     public partial class Search : BasePage
     {
         private static IEnumerable<Item> items;
+        private static int currentPageStartRowIndex = 0;
+        private static int pageSize = 5;
 
         protected override void OnPreRender(EventArgs e)
         {
@@ -36,10 +38,41 @@ namespace HomeMultimediaLibrary
 
         protected void OnItemDataBound(object sender, ListViewItemEventArgs e)
         {
+            var currentItem = items.ElementAt(e.Item.DataItemIndex);
+
+            // something wrong here
             var image = e.Item.FindControl("itemImage") as System.Web.UI.WebControls.Image;
             if (image != null)
             {
-                image.ImageUrl = items.ElementAt(e.Item.DataItemIndex).Image?.Base64;
+                image.ImageUrl = currentItem.Image?.Base64;
+            }
+
+            var lengthTextBox = e.Item.FindControl("lengthTextBox") as TextBox;
+            var typeTextBox = e.Item.FindControl("typeTextBox") as TextBox;
+
+            if (currentItem is ReadingItem readingItem)
+            {
+                lengthTextBox.Text = $"{readingItem.Pages} pages";
+
+                if(currentItem is BookItem)
+                {
+                    typeTextBox.Text = TYPE_BOOK;
+                } else if(currentItem is MagazineItem)
+                {
+                    typeTextBox.Text = TYPE_MAGAZINE;
+                }
+            }
+            else if (currentItem is MultimediaItem multimediaItem)
+            {
+                lengthTextBox.Text = $"{multimediaItem.LengthMinutes} minutes";
+                if (currentItem is FilmItem)
+                {
+                    typeTextBox.Text = TYPE_FILM;
+                }
+                else if (currentItem is AlbumItem)
+                {
+                    typeTextBox.Text = TYPE_ALBUM;
+                }
             }
         }
 
@@ -52,7 +85,7 @@ namespace HomeMultimediaLibrary
 
         protected void OnItemUpdating(object sender, ListViewUpdateEventArgs e)
         {
-            int itemId = items.ElementAt(ItemListView.EditIndex).Id;
+            int itemId = items.ElementAt(ItemListView.EditIndex + currentPageStartRowIndex).Id;
 
             string editItemName = (ItemListView.Items[e.ItemIndex].FindControl("editNameTextBox") as TextBox).Text;
             string editAuthor = (ItemListView.Items[e.ItemIndex].FindControl("editAuthorTextBox") as TextBox).Text;
@@ -83,8 +116,8 @@ namespace HomeMultimediaLibrary
         }
 
         protected void OnItemDeleting(object sender, ListViewDeleteEventArgs e)
-        {
-            int itemId = items.ElementAt(e.ItemIndex).Id;
+        {           
+            int itemId = items.ElementAt(e.ItemIndex + currentPageStartRowIndex).Id;
 
             using (var context = new ApplicationDbContext())
             {
@@ -92,7 +125,6 @@ namespace HomeMultimediaLibrary
 
                 context.Items.Remove(item);
                 context.SaveChanges();
-                //items = context.Items.OrderByDescending(it => it.Id).Take(50).ToList();
             }
 
             LoadDatabaseTable();
@@ -102,6 +134,7 @@ namespace HomeMultimediaLibrary
         protected void OnPageChanging(object sender, PagePropertiesChangingEventArgs e)
         {
             ItemListView.EditIndex = -1;
+            currentPageStartRowIndex = e.StartRowIndex;
         }
 
         private void LoadDatabaseTable(int? itemsToTake = null, IEnumerable<string> names = null, IEnumerable<string> authors = null)

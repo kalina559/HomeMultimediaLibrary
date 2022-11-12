@@ -30,8 +30,8 @@
 
                 <asp:Button SkinID="buttonTxt" ID="searchButton" runat="server" OnClick="OnSearchButtonClick" Text="Search" CssClass="btn btn-default" />
             </div>
-            <asp:ListView ID="ItemListView" runat="server" ItemPlaceholderID="itemPlaceholder" 
-                OnItemEditing="OnItemEditing" OnItemDataBound="OnItemDataBound" 
+            <asp:ListView ID="ItemListView" runat="server" ItemPlaceholderID="itemPlaceholder"
+                OnItemEditing="OnItemEditing" OnItemDataBound="OnItemDataBound"
                 OnItemCanceling="OnItemCanceling" OnItemUpdating="OnItemUpdating" OnItemDeleting="OnItemDeleting" OnPagePropertiesChanging="OnPageChanging">
                 <LayoutTemplate>
                     <table class="library-item-table">
@@ -44,6 +44,8 @@
                             </th>
                             <th>Publisher
                             </th>
+                            <th>Length
+                            </th>
                             <th>Summary
                             </th>
                             <th>Image
@@ -55,7 +57,7 @@
                                 <asp:DataPager ID="DataPager" runat="server" PagedControlID="ItemListView" PageSize="5">
                                     <Fields>
                                         <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowPreviousPageButton="true"
-                                            ShowNextPageButton="false"/>
+                                            ShowNextPageButton="false" />
                                         <asp:NumericPagerField ButtonType="Link" />
                                         <asp:NextPreviousPagerField ButtonType="Link" ShowNextPageButton="true" ShowLastPageButton="false" ShowPreviousPageButton="false" />
                                     </Fields>
@@ -71,7 +73,7 @@
                 </GroupTemplate>
                 <ItemTemplate>
                     <td>
-                        <%# "type" %>
+                        <asp:TextBox BorderWidth="0" ReadOnly="true" ID="TypeTextBox" runat="server" />
                     </td>
                     <td>
                         <%# Eval("Name") %>
@@ -81,6 +83,9 @@
                     </td>
                     <td>
                         <%# Eval("Publisher") %>
+                    </td>
+                    <td>
+                        <asp:TextBox BorderWidth="0" ReadOnly="true" ID="lengthTextBox" runat="server" />
                     </td>
                     <td>
                         <%# Eval("Summary") %>
