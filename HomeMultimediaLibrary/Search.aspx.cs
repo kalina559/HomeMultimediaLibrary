@@ -33,13 +33,17 @@ namespace HomeMultimediaLibrary
         protected void OnItemUpdating(object sender, ListViewUpdateEventArgs e)
         {
             string editItemId = (ItemListView.Items[e.ItemIndex].FindControl("editIdText") as TextBox).Text;
-            string editItemName = (ItemListView.Items[e.ItemIndex].FindControl("editNameText") as TextBox).Text;
             int itemId = Convert.ToInt32(editItemId);
+
+            string editItemName = (ItemListView.Items[e.ItemIndex].FindControl("editNameText") as TextBox).Text;
+            string editAuthor = (ItemListView.Items[e.ItemIndex].FindControl("editAuthorText") as TextBox).Text;
+
 
             using (var context = new ApplicationDbContext())
             {
                 var item = context.Items.Where(i => i.Id == itemId).Single();
                 item.Name = editItemName;
+                item.Author = editAuthor;
                 context.SaveChanges();
 
                 items = context.Items.OrderByDescending(it => it.Id).Take(50).ToList();

@@ -82,3 +82,22 @@ td, th {
 .result-pages {
     text-align: center
 }
+
+/*.item-input-label {
+    margin-right: 15px;
+    width: 200px
+}
+
+.item-input-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-input-form{
+    display: block
+}*/
+
+.item-type-drop-down{
+    width: auto
+}

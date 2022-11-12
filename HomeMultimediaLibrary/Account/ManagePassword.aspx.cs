@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using HomeMultimediaLibrary.Pages;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace HomeMultimediaLibrary.Account
 {
-    public partial class ManagePassword : System.Web.UI.Page
+    public partial class ManagePassword : BasePage
     {
         protected string SuccessMessage
         {

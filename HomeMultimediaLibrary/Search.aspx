@@ -59,7 +59,7 @@
                     <asp:TextBox ID="editNameText" runat="server" Text='<%# Eval("Name") %>'></asp:TextBox>
                 </td>
                 <td>
-                    <asp:TextBox ID="authorLabel" runat="server" Text='<%# Eval("Author") %>'></asp:TextBox>
+                    <asp:TextBox ID="editAuthorText" runat="server" Text='<%# Eval("Author") %>'></asp:TextBox>
                 </td>                
                 <td>
                     <asp:Button ID="updateButton" runat="server" Text='Update' CommandName="Update" />

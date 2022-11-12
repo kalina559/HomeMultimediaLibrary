@@ -13,6 +13,9 @@ namespace HomeMultimediaLibrary
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            List<String> types = new List<String> { "Book", "Magazine", "Movie", "Album" };
+            itemType.DataSource = types;
+            itemType.DataBind();
         }
     }
 }
