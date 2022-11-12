@@ -46,11 +46,12 @@ namespace HomeMultimediaLibrary
 
         protected void OnItemUpdating(object sender, ListViewUpdateEventArgs e)
         {
-            string editItemId = (ItemListView.Items[e.ItemIndex].FindControl("editIdText") as TextBox).Text;
-            int itemId = Convert.ToInt32(editItemId);
+            int itemId = items.ElementAt(ItemListView.EditIndex).Id;
 
-            string editItemName = (ItemListView.Items[e.ItemIndex].FindControl("editNameText") as TextBox).Text;
-            string editAuthor = (ItemListView.Items[e.ItemIndex].FindControl("editAuthorText") as TextBox).Text;
+            string editItemName = (ItemListView.Items[e.ItemIndex].FindControl("editNameTextBox") as TextBox).Text;
+            string editAuthor = (ItemListView.Items[e.ItemIndex].FindControl("editAuthorTextBox") as TextBox).Text;
+            string editPublisher = (ItemListView.Items[e.ItemIndex].FindControl("editPublisherTextBox") as TextBox).Text;
+            string editSummary = (ItemListView.Items[e.ItemIndex].FindControl("editSummaryTextBox") as TextBox).Text;
 
 
             using (var context = new ApplicationDbContext())
@@ -58,6 +59,8 @@ namespace HomeMultimediaLibrary
                 var item = context.Items.Where(i => i.Id == itemId).Single();
                 item.Name = editItemName;
                 item.Author = editAuthor;
+                item.Publisher = editPublisher;
+                item.Summary = editSummary;
                 context.SaveChanges();
 
                 items = context.Items.OrderByDescending(it => it.Id).Take(50).ToList();
@@ -80,15 +83,15 @@ namespace HomeMultimediaLibrary
                 if (itemsToTake.HasValue)
                 {
                     items = context.Items.OrderByDescending(it => it.Id).Take((int)itemsToTake);
-                } else
+                }
+                else
                 {
                     items = context.Items.OrderByDescending(it => it.Id);
                 }
 
-                items = FilterByType(items);
+                items = ApplyFilters(items);
 
                 items = items
-                    .Where(item => names != null ? names.Contains(item.Name) : true)
                     .Where(item => authors != null ? authors.Contains(item.Author) : true)
                     .ToList();
 
@@ -96,10 +99,20 @@ namespace HomeMultimediaLibrary
                 ItemListView.DataBind();
             }
         }
+        private IEnumerable<Item> ApplyFilters(IEnumerable<Item> items)
+        {
+            var filtered = FilterByType(items);
+            filtered = FilterByName(filtered);
+            filtered = FilterByAuthor(filtered);
+            filtered = FilterByPublisher(filtered);
+            filtered = FilterByKeyword(filtered);
+
+            return filtered;
+        }
 
         private IEnumerable<Item> FilterByType(IEnumerable<Item> items)
         {
-            if(itemTypeDropDown.SelectedItem == null)
+            if (itemTypeDropDown.SelectedItem == null)
             {
                 return items;
             }
@@ -119,6 +132,60 @@ namespace HomeMultimediaLibrary
                     throw new Exception("Unknown item type");
             }
         }
+
+        private IEnumerable<Item> FilterByName(IEnumerable<Item> items)
+        {
+            if (nameTextBox.Text != null && nameTextBox.Text != "")
+            {
+                var nameArray = ParseStringToArray(nameTextBox.Text);
+                return items.Where(item => nameArray.Where(name => item.Name.ToLower().Contains(name.ToLower())).Any());
+            }
+            else
+            {
+                return items;
+            }
+        }
+
+        private IEnumerable<Item> FilterByAuthor(IEnumerable<Item> items)
+        {
+            if (authorTextBox.Text != null && authorTextBox.Text != "")
+            {
+                var authorArray = ParseStringToArray(authorTextBox.Text);
+                return items.Where(item => authorArray.Where(author => item.Author.ToLower().Contains(author.ToLower())).Any());
+            }
+            else
+            {
+                return items;
+            }
+        }
+
+        private IEnumerable<Item> FilterByKeyword(IEnumerable<Item> items)
+        {
+            if (keywordsTextBox.Text != null && keywordsTextBox.Text != "")
+            {
+                var keywordArray = ParseStringToArray(keywordsTextBox.Text);
+                return items.Where(item => keywordArray
+                .Any(keyword => item.GetKeywords.Any(k => k.Contains(keyword))));
+            }
+            else
+            {
+                return items;
+            }
+        }
+
+        private IEnumerable<Item> FilterByPublisher(IEnumerable<Item> items)
+        {
+            if (publisherTextBox.Text != null && publisherTextBox.Text != "")
+            {
+                var publisherArray = ParseStringToArray(publisherTextBox.Text);
+                return items.Where(item => publisherArray.Where(publisher => item.Publisher.ToLower().Contains(publisher.ToLower())).Any());
+            }
+            else
+            {
+                return items;
+            }
+        }
+
 
         private void RebindTable()
         {
@@ -140,7 +207,7 @@ namespace HomeMultimediaLibrary
 
         protected void OnSetFiltersClick(object sender, EventArgs e)
         {
-            if(setFiltersButton.Text == "Set filters")
+            if (setFiltersButton.Text == "Set filters")
             {
                 filtersLayout.Visible = true;
                 setFiltersButton.Text = "Close filters";
@@ -151,6 +218,16 @@ namespace HomeMultimediaLibrary
                 filtersLayout.Visible = false;
                 setFiltersButton.Text = "Set filters";
             }
+        }
+
+        private IEnumerable<string> ParseStringToArray(string str)
+        {
+            IEnumerable<string> array = str.Split(',');
+
+            // removing leading and trailing whitespace
+            array = array.Select(s => s.Trim());
+
+            return array;
         }
     }
 }

@@ -116,11 +116,12 @@ namespace HomeMultimediaLibrary
             {
                 Name = nameTextBox.Text,
                 Author = authorTextBox.Text,
-                Issuer = publisherTextBox.Text,
+                Publisher = publisherTextBox.Text,
                 Summary = summaryTextBox.Text,
                 AddedByUserId = user.Id,
                 ISBN = ISBNTextBox.Text,
-                Pages = Convert.ToInt32(pagesTextBox.Text)
+                Pages = Convert.ToInt32(pagesTextBox.Text),
+                Keywords = keywordsTextBox.Text
             };
 
             context.BookItems.Add(item);
@@ -132,11 +133,12 @@ namespace HomeMultimediaLibrary
             {
                 Name = nameTextBox.Text,
                 Author = authorTextBox.Text,
-                Issuer = publisherTextBox.Text,
+                Publisher = publisherTextBox.Text,
                 Summary = summaryTextBox.Text,
                 AddedByUserId = user.Id,
                 ISBN = ISBNTextBox.Text,
-                Pages = Convert.ToInt32(pagesTextBox.Text)
+                Pages = Convert.ToInt32(pagesTextBox.Text),
+                Keywords = keywordsTextBox.Text
             };
 
             context.MagazineItems.Add(item);
@@ -148,10 +150,11 @@ namespace HomeMultimediaLibrary
             {
                 Name = nameTextBox.Text,
                 Author = authorTextBox.Text,
-                Issuer = publisherTextBox.Text,
+                Publisher = publisherTextBox.Text,
                 Summary = summaryTextBox.Text,
                 AddedByUserId = user.Id,
-                LengthMinutes = Convert.ToInt32(lengthMinutesTextBox.Text)
+                LengthMinutes = Convert.ToInt32(lengthMinutesTextBox.Text),
+                Keywords = keywordsTextBox.Text
             };
 
             context.FilmItems.Add(item);
@@ -163,10 +166,11 @@ namespace HomeMultimediaLibrary
             {
                 Name = nameTextBox.Text,
                 Author = authorTextBox.Text,
-                Issuer = publisherTextBox.Text,
+                Publisher = publisherTextBox.Text,
                 Summary = summaryTextBox.Text,
                 AddedByUserId = user.Id,
-                LengthMinutes = Convert.ToInt32(lengthMinutesTextBox.Text)
+                LengthMinutes = Convert.ToInt32(lengthMinutesTextBox.Text),
+                Keywords = keywordsTextBox.Text
             };
 
             context.AlbumItems.Add(item);

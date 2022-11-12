@@ -14,7 +14,7 @@
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Author = c.String(),
-                        Issuer = c.String(),
+                        Publisher = c.String(),
                         Summary = c.String(),
                         DateCreated = c.DateTime(nullable: false),
                         AddedById_Id = c.String(maxLength: 128),

@@ -355,6 +355,18 @@
     <Compile Include="Migrations\202211121441430_RenameItemForeignKey.designer.cs">
       <DependentUpon>202211121441430_RenameItemForeignKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211121803302_AddKeywordsColumn.cs" />
+    <Compile Include="Migrations\202211121803302_AddKeywordsColumn.designer.cs">
+      <DependentUpon>202211121803302_AddKeywordsColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211121815571_RenameIssuerToPublisher.cs" />
+    <Compile Include="Migrations\202211121815571_RenameIssuerToPublisher.designer.cs">
+      <DependentUpon>202211121815571_RenameIssuerToPublisher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211121823444_AddNotNullFields.cs" />
+    <Compile Include="Migrations\202211121823444_AddNotNullFields.designer.cs">
+      <DependentUpon>202211121823444_AddNotNullFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -460,6 +472,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211121441430_RenameItemForeignKey.resx">
       <DependentUpon>202211121441430_RenameItemForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211121803302_AddKeywordsColumn.resx">
+      <DependentUpon>202211121803302_AddKeywordsColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211121815571_RenameIssuerToPublisher.resx">
+      <DependentUpon>202211121815571_RenameIssuerToPublisher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211121823444_AddNotNullFields.resx">
+      <DependentUpon>202211121823444_AddNotNullFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

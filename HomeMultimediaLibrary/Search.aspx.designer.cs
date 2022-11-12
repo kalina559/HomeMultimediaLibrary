@@ -33,6 +33,42 @@ namespace HomeMultimediaLibrary
         protected global::System.Web.UI.WebControls.DropDownList itemTypeDropDown;
 
         /// <summary>
+        /// nameTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox nameTextBox;
+
+        /// <summary>
+        /// authorTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox authorTextBox;
+
+        /// <summary>
+        /// keywordsTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox keywordsTextBox;
+
+        /// <summary>
+        /// publisherTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox publisherTextBox;
+
+        /// <summary>
         /// setFiltersButton control.
         /// </summary>
         /// <remarks>
