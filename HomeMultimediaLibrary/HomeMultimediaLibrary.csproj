@@ -351,6 +351,10 @@
     <Compile Include="AddItem.aspx.designer.cs">
       <DependentUpon>AddItem.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211121441430_RenameItemForeignKey.cs" />
+    <Compile Include="Migrations\202211121441430_RenameItemForeignKey.designer.cs">
+      <DependentUpon>202211121441430_RenameItemForeignKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -453,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211111735530_AddItemsTables.resx">
       <DependentUpon>202211111735530_AddItemsTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211121441430_RenameItemForeignKey.resx">
+      <DependentUpon>202211121441430_RenameItemForeignKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -7,7 +7,7 @@ using System.Web;
 namespace HomeMultimediaLibrary.Models.Entities
 {
     [Table("Items")]
-    public class Item: EntityBase
+    public class Item : EntityBase
     {
         public string Name { get; set; }
 
@@ -19,6 +19,12 @@ namespace HomeMultimediaLibrary.Models.Entities
 
         public string Summary { get; set; }
 
-        public virtual ApplicationUser AddedById { get; set; }
+        public virtual ApplicationUser AddedByUser { get; set; }
+
+        [ForeignKey(nameof(AddedByUser))]
+        public string AddedByUserId
+        {
+            get; set;
+        }
     }
 }

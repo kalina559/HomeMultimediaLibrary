@@ -15,39 +15,120 @@ namespace HomeMultimediaLibrary
     {
 
         /// <summary>
-        /// itemType control.
+        /// itemTypeDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList itemType;
+        protected global::System.Web.UI.WebControls.DropDownList itemTypeDropDown;
 
         /// <summary>
-        /// name control.
+        /// nameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox name;
+        protected global::System.Web.UI.WebControls.TextBox nameTextBox;
 
         /// <summary>
-        /// author control.
+        /// authorTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox author;
+        protected global::System.Web.UI.WebControls.TextBox authorTextBox;
 
         /// <summary>
-        /// publisher control.
+        /// publisherTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox publisher;
+        protected global::System.Web.UI.WebControls.TextBox publisherTextBox;
+
+        /// <summary>
+        /// ISBNLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ISBNLabel;
+
+        /// <summary>
+        /// ISBNTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ISBNTextBox;
+
+        /// <summary>
+        /// pagesLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label pagesLabel;
+
+        /// <summary>
+        /// pagesTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox pagesTextBox;
+
+        /// <summary>
+        /// lengthMinutesLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lengthMinutesLabel;
+
+        /// <summary>
+        /// lengthMinutesTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lengthMinutesTextBox;
+
+        /// <summary>
+        /// summaryTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox summaryTextBox;
+
+        /// <summary>
+        /// keywordsTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox keywordsTextBox;
+
+        /// <summary>
+        /// tableOfContentsTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tableOfContentsTextBox;
     }
 }
