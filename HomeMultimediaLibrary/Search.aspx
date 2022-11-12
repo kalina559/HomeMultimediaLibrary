@@ -30,7 +30,9 @@
 
                 <asp:Button SkinID="buttonTxt" ID="searchButton" runat="server" OnClick="OnSearchButtonClick" Text="Search" CssClass="btn btn-default" />
             </div>
-            <asp:ListView ID="ItemListView" runat="server" ItemPlaceholderID="itemPlaceholder" OnItemEditing="OnItemEditing" OnItemDataBound="OnItemDataBound" OnItemCanceling="OnItemCanceling" OnItemUpdating="OnItemUpdating">
+            <asp:ListView ID="ItemListView" runat="server" ItemPlaceholderID="itemPlaceholder" 
+                OnItemEditing="OnItemEditing" OnItemDataBound="OnItemDataBound" 
+                OnItemCanceling="OnItemCanceling" OnItemUpdating="OnItemUpdating" OnItemDeleting="OnItemDeleting" OnPagePropertiesChanging="OnPageChanging">
                 <LayoutTemplate>
                     <table class="library-item-table">
                         <tr>
@@ -51,7 +53,7 @@
                                 <asp:DataPager ID="DataPager" runat="server" PagedControlID="ItemListView" PageSize="5">
                                     <Fields>
                                         <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowPreviousPageButton="true"
-                                            ShowNextPageButton="false" />
+                                            ShowNextPageButton="false"/>
                                         <asp:NumericPagerField ButtonType="Link" />
                                         <asp:NextPreviousPagerField ButtonType="Link" ShowNextPageButton="true" ShowLastPageButton="false" ShowPreviousPageButton="false" />
                                     </Fields>
@@ -83,6 +85,7 @@
                     </td>
                     <td>
                         <asp:Button ID="editButton" runat="server" Text='Edit' CommandName="Edit" />
+                        <asp:Button ID="deleteButton" runat="server" Text='Delete' CommandName="Delete" CssClass="btn-danger" />
                     </td>
                 </ItemTemplate>
                 <EditItemTemplate>

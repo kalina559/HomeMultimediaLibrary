@@ -76,7 +76,29 @@ namespace HomeMultimediaLibrary
             RebindTable();
         }
 
-        private void LoadDatabaseTable(int? itemsToTake, IEnumerable<string> names = null, IEnumerable<string> authors = null)
+        protected void OnItemDeleting(object sender, ListViewDeleteEventArgs e)
+        {
+            int itemId = items.ElementAt(e.ItemIndex).Id;
+
+            using (var context = new ApplicationDbContext())
+            {
+                var item = context.Items.Where(i => i.Id == itemId).Single();
+
+                context.Items.Remove(item);
+                context.SaveChanges();
+                //items = context.Items.OrderByDescending(it => it.Id).Take(50).ToList();
+            }
+
+            LoadDatabaseTable();
+            RebindTable();
+        }
+
+        protected void OnPageChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            ItemListView.EditIndex = -1;
+        }
+
+        private void LoadDatabaseTable(int? itemsToTake = null, IEnumerable<string> names = null, IEnumerable<string> authors = null)
         {
             using (var context = new ApplicationDbContext())
             {
@@ -201,7 +223,7 @@ namespace HomeMultimediaLibrary
                 pager.SetPageProperties(0, pager.PageSize, true);
             }
 
-            LoadDatabaseTable(null);
+            LoadDatabaseTable();
             RebindTable();
         }
 
