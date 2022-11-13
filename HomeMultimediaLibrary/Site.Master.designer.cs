@@ -33,6 +33,15 @@ namespace HomeMultimediaLibrary
         protected global::System.Web.UI.HtmlControls.HtmlAnchor addItemTab;
 
         /// <summary>
+        /// manageUsersTab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor manageUsersTab;
+
+        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>

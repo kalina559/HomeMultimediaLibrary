@@ -4,7 +4,13 @@
     <asp:Panel DefaultButton="searchButton" runat="server">
         <div>
             <h2>Search</h2>
-            <h3>Here you can have a look into the contents of your multimedia library.</h3>
+            <h3>Here you can have a look into the contents of your multimedia library.
+                <br/><br/>
+                You can enter multiple search values, separated with a comma.
+                <br/><br/>
+                Example: If you enter Name = "textbook, script" and Author = "Smith, Doe", the search engine will return items 
+                with a name containing 'textbook' or 'script' with the author's name containing 'Smith' or 'Doe'.
+            </h3>
         </div>
         <div class="search-results-div">
             <!-- filters -->
@@ -47,6 +53,8 @@
                             <th>Length
                             </th>
                             <th>Summary
+                            </th>
+                            <th>ISBN
                             </th>
                             <th>Image
                             </th>
@@ -91,6 +99,9 @@
                         <%# Eval("Summary") %>
                     </td>
                     <td>
+                        <asp:TextBox BorderWidth="0" ReadOnly="true" ID="ISBNTextBox" runat="server" />
+                    </td>
+                    <td>
                         <asp:Image CssClass="item-image" ID="itemImage" runat="server" />
                     </td>
                     <td>
@@ -100,7 +111,7 @@
                 </ItemTemplate>
                 <EditItemTemplate>
                     <td>
-                        <asp:TextBox ID="editTypeTextBox" runat="server" Enabled="false" Text='type'></asp:TextBox>
+                        <asp:TextBox BorderWidth="0" ReadOnly="true" ID="TypeTextBox" runat="server" />
                     </td>
                     <td>
                         <asp:TextBox ID="editNameTextBox" runat="server" Text='<%# Eval("Name") %>'></asp:TextBox>
@@ -112,7 +123,16 @@
                         <asp:TextBox ID="editPublisherTextBox" runat="server" Text='<%# Eval("Publisher") %>'></asp:TextBox>
                     </td>
                     <td>
+                        <asp:TextBox ID="lengthTextBox" runat="server" type="number" />
+                    </td>
+                    <td>
                         <asp:TextBox ID="editSummaryTextBox" TextMode="MultiLine" runat="server" Text='<%# Eval("Summary") %>'></asp:TextBox>
+                    </td>
+                    <td>
+                        <asp:TextBox BorderWidth="0" ID="ISBNTextBox" runat="server" />
+                    </td>
+                    <td>
+                        <asp:Image CssClass="item-image" ID="itemImage" runat="server" />
                     </td>
                     <td>
                         <asp:Button ID="updateButton" runat="server" Text='Update' CommandName="Update" />

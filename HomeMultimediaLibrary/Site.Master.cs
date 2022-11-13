@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using HomeMultimediaLibrary.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace HomeMultimediaLibrary
 {
@@ -54,10 +55,20 @@ namespace HomeMultimediaLibrary
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                searchTab.Visible = true;
-                addItemTab.Visible = true;
-            }
+                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var currentUserId = HttpContext.Current.User.Identity.GetUserId();
 
+                if (manager.IsInRole(currentUserId, "regular"))
+                {
+                    searchTab.Visible = true;
+                    addItemTab.Visible = true;
+                }
+
+                if (manager.IsInRole(currentUserId, "admin"))
+                {
+                    manageUsersTab.Visible = true;
+                }
+            }
             if (!IsPostBack)
             {
                 // Set Anti-XSRF token

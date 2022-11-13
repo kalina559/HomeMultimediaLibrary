@@ -16,7 +16,6 @@ namespace HomeMultimediaLibrary
     {
         private static IEnumerable<Item> items;
         private static int currentPageStartRowIndex = 0;
-        private static int pageSize = 5;
 
         protected override void OnPreRender(EventArgs e)
         {
@@ -49,22 +48,40 @@ namespace HomeMultimediaLibrary
 
             var lengthTextBox = e.Item.FindControl("lengthTextBox") as TextBox;
             var typeTextBox = e.Item.FindControl("typeTextBox") as TextBox;
+            var ISBNTextBox = e.Item.FindControl("ISBNTextBox") as TextBox;
+
 
             if (currentItem is ReadingItem readingItem)
             {
-                lengthTextBox.Text = $"{readingItem.Pages} pages";
+                lengthTextBox.Text = readingItem.Pages.ToString();
 
-                if(currentItem is BookItem)
+                if (ItemListView.EditIndex != e.Item.DisplayIndex)
+                {
+                    lengthTextBox.Text += " pages";
+                }
+
+                ISBNTextBox.Text = readingItem.ISBN; 
+
+                if (currentItem is BookItem)
                 {
                     typeTextBox.Text = TYPE_BOOK;
-                } else if(currentItem is MagazineItem)
+                }
+                else if (currentItem is MagazineItem)
                 {
                     typeTextBox.Text = TYPE_MAGAZINE;
                 }
             }
             else if (currentItem is MultimediaItem multimediaItem)
             {
-                lengthTextBox.Text = $"{multimediaItem.LengthMinutes} minutes";
+                ISBNTextBox.Text = "Not applicable";
+                lengthTextBox.Text = multimediaItem.LengthMinutes.ToString();
+
+                if (ItemListView.EditIndex != e.Item.DisplayIndex)
+                {
+                    lengthTextBox.Text += " minutes";
+                }
+
+
                 if (currentItem is FilmItem)
                 {
                     typeTextBox.Text = TYPE_FILM;
@@ -74,6 +91,7 @@ namespace HomeMultimediaLibrary
                     typeTextBox.Text = TYPE_ALBUM;
                 }
             }
+
         }
 
         protected void OnItemEditing(object sender, ListViewEditEventArgs e)
@@ -91,7 +109,8 @@ namespace HomeMultimediaLibrary
             string editAuthor = (ItemListView.Items[e.ItemIndex].FindControl("editAuthorTextBox") as TextBox).Text;
             string editPublisher = (ItemListView.Items[e.ItemIndex].FindControl("editPublisherTextBox") as TextBox).Text;
             string editSummary = (ItemListView.Items[e.ItemIndex].FindControl("editSummaryTextBox") as TextBox).Text;
-
+            string editLength = (ItemListView.Items[e.ItemIndex].FindControl("lengthTextBox") as TextBox).Text;
+            string editISBN = (ItemListView.Items[e.ItemIndex].FindControl("ISBNTextBox") as TextBox).Text;
 
             using (var context = new ApplicationDbContext())
             {
@@ -100,9 +119,23 @@ namespace HomeMultimediaLibrary
                 item.Author = editAuthor;
                 item.Publisher = editPublisher;
                 item.Summary = editSummary;
+
+                if (item is ReadingItem readingItem)
+                {
+                    readingItem.Pages = Convert.ToInt32(editLength);
+                    readingItem.ISBN = editISBN;
+                }
+                else if (item is MultimediaItem multimediaItem)
+                {
+                    multimediaItem.LengthMinutes = Convert.ToInt32(editLength);
+                }
                 context.SaveChanges();
 
-                items = context.Items.OrderByDescending(it => it.Id).Take(50).ToList();
+                items = context.Items
+                    .OrderByDescending(it => it.Id)
+                    .Take(50)
+                    .Include(it => it.Image)
+                    .ToList();
             }
 
             ItemListView.EditIndex = -1;
@@ -116,7 +149,7 @@ namespace HomeMultimediaLibrary
         }
 
         protected void OnItemDeleting(object sender, ListViewDeleteEventArgs e)
-        {           
+        {
             int itemId = items.ElementAt(e.ItemIndex + currentPageStartRowIndex).Id;
 
             using (var context = new ApplicationDbContext())
@@ -150,6 +183,7 @@ namespace HomeMultimediaLibrary
                 else
                 {
                     items = context.Items
+                        .Include(item => item.Image)
                         .OrderByDescending(it => it.Id);
                 }
 
