@@ -107,6 +107,7 @@ namespace HomeMultimediaLibrary
             manager.Update(user);
 
             UsersListView.EditIndex = -1;
+            LoadDatabaseTable();
             RebindTable();
         }
 
