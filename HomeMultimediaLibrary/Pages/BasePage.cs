@@ -28,5 +28,16 @@ namespace HomeMultimediaLibrary.Pages
                 Page.Theme = "Light";
             }
         }
+
+        protected void RedirectIfUserNotInRole(string role, string defaultPage)
+        {
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var currentUserId = HttpContext.Current.User.Identity.GetUserId();
+
+            if (currentUserId == null || !manager.IsInRole(currentUserId, role))
+            {
+                Response.Redirect(defaultPage);
+            }
+        }
     }
 }

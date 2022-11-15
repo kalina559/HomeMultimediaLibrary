@@ -21,6 +21,8 @@ namespace HomeMultimediaLibrary
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            RedirectIfUserNotInRole("admin", "~/Default");
+
             if (!IsPostBack)
             {
                 List<String> types = new List<String> { TYPE_BOOK, TYPE_MAGAZINE, TYPE_FILM, TYPE_ALBUM };

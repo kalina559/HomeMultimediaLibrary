@@ -2,12 +2,13 @@
 using HomeMultimediaLibrary.Models.Entities;
 using HomeMultimediaLibrary.Models.Entities.Items;
 using HomeMultimediaLibrary.Pages;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace HomeMultimediaLibrary
@@ -25,6 +26,8 @@ namespace HomeMultimediaLibrary
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            RedirectIfUserNotInRole("regular", "~/Default");
+
             if (!IsPostBack)
             {
                 // initially just take 50 newest items

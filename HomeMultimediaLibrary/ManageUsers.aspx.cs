@@ -28,12 +28,11 @@ namespace HomeMultimediaLibrary
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            RedirectIfUserNotInRole("admin", "~/Default");
+
             if (!IsPostBack)
             {
-                // initially just take 50 newest items
                 LoadDatabaseTable();
-                //UsersListView.DataSource = types;
-                //UsersListView.DataBind();
             }
         }
 
