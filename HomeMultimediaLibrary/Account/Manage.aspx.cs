@@ -148,6 +148,8 @@ namespace HomeMultimediaLibrary.Account
             user.Theme = PreferredColor.SelectedItem.Value;
 
             manager.Update(user);
+
+            Response.Redirect(Request.RawUrl);
         }
     }
 }

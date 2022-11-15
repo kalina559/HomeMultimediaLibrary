@@ -61,12 +61,12 @@ namespace HomeMultimediaLibrary
                 if (manager.IsInRole(currentUserId, "regular"))
                 {
                     searchTab.Visible = true;
-                    addItemTab.Visible = true;
                 }
 
                 if (manager.IsInRole(currentUserId, "admin"))
                 {
                     manageUsersTab.Visible = true;
+                    addItemTab.Visible = true;
                 }
             }
             if (!IsPostBack)

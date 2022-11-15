@@ -40,7 +40,7 @@
                 OnItemEditing="OnItemEditing" OnItemDataBound="OnItemDataBound"
                 OnItemCanceling="OnItemCanceling" OnItemUpdating="OnItemUpdating" OnItemDeleting="OnItemDeleting" OnPagePropertiesChanging="OnPageChanging">
                 <LayoutTemplate>
-                    <table class="library-item-table">
+                    <table class="library-item-table" border="3">
                         <tr>
                             <th>Type
                             </th>
@@ -81,7 +81,7 @@
                 </GroupTemplate>
                 <ItemTemplate>
                     <td>
-                        <asp:TextBox BorderWidth="0" ReadOnly="true" ID="TypeTextBox" runat="server" />
+                        <asp:TextBox BorderWidth="0" SkinID="textBoxCell" ReadOnly="true" ID="TypeTextBox" runat="server" />
                     </td>
                     <td>
                         <%# Eval("Name") %>
@@ -93,20 +93,20 @@
                         <%# Eval("Publisher") %>
                     </td>
                     <td>
-                        <asp:TextBox BorderWidth="0" ReadOnly="true" ID="lengthTextBox" runat="server" />
+                        <asp:TextBox BorderWidth="0" SkinID="textBoxCell" ReadOnly="true" ID="lengthTextBox" runat="server" />
                     </td>
                     <td>
                         <%# Eval("Summary") %>
                     </td>
                     <td>
-                        <asp:TextBox BorderWidth="0" ReadOnly="true" ID="ISBNTextBox" runat="server" />
+                        <asp:TextBox BorderWidth="0" SkinID="textBoxCell" ReadOnly="true" ID="ISBNTextBox" runat="server" />
                     </td>
                     <td>
                         <asp:Image CssClass="item-image" ID="itemImage" runat="server" />
                     </td>
                     <td>
-                        <asp:Button ID="editButton" runat="server" Text='Edit' CommandName="Edit" />
-                        <asp:Button ID="deleteButton" runat="server" Text='Delete' CommandName="Delete" CssClass="btn-danger" />
+                        <asp:Button ID="editButton" Visible="false" runat="server" Text='Edit' CommandName="Edit" />
+                        <asp:Button ID="deleteButton" Visible="false" runat="server" Text='Delete' CommandName="Delete" CssClass="btn-danger" />
                     </td>
                 </ItemTemplate>
                 <EditItemTemplate>
@@ -135,8 +135,8 @@
                         <asp:Image CssClass="item-image" ID="itemImage" runat="server" />
                     </td>
                     <td>
-                        <asp:Button ID="updateButton" runat="server" Text='Update' CommandName="Update" />
-                        <asp:Button ID="cancelButton" runat="server" Text='Cancel' CommandName="Cancel" />
+                        <asp:Button ID="updateButton" Visible="false" runat="server" Text='Update' CommandName="Update" />
+                        <asp:Button ID="cancelButton" Visible="false" runat="server" Text='Cancel' CommandName="Cancel" />
                     </td>
                 </EditItemTemplate>
             </asp:ListView>

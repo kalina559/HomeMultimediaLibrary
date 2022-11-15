@@ -1,3 +1,4 @@
-﻿<asp:Label runat="server" SkinId="labelTxt" BackColor="Green" ></asp:Label>
-<asp:Button runat="server" SkinId="buttonTxt" BackColor="Red" ></asp:Button>
-<asp:Panel runat="server" SkinId="backgroundColor" BackColor="Gray" ></asp:Panel>
+﻿<asp:Label runat="server" SkinId="labelTxt" BackColor="#6B728E" ></asp:Label>
+<asp:Button runat="server" SkinId="buttonTxt" BackColor="#50577A" borderColor="#50577A"></asp:Button>
+<asp:Panel runat="server" SkinId="backgroundColor" BackColor="#6B728E" ></asp:Panel>
+<asp:TextBox runat="server" SkinId="textBoxCell" BackColor="#6B728E" ></asp:TextBox>

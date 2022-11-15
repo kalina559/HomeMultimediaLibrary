@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace HomeMultimediaLibrary
@@ -26,6 +27,7 @@ namespace HomeMultimediaLibrary
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            GetUserRoles();
             RedirectIfUserNotInRole("regular", "~/Default");
 
             if (!IsPostBack)
@@ -73,6 +75,8 @@ namespace HomeMultimediaLibrary
                 {
                     typeTextBox.Text = TYPE_MAGAZINE;
                 }
+
+                ShowButtonsForAdmin(e);
             }
             else if (currentItem is MultimediaItem multimediaItem)
             {
@@ -95,6 +99,37 @@ namespace HomeMultimediaLibrary
                 }
             }
 
+        }
+
+        private void ShowButtonsForAdmin(ListViewItemEventArgs e)
+        {
+            if (UserIsAdmin())
+            {
+                Control editButton = e.Item.FindControl("editButton");
+                var deleteButton = e.Item.FindControl("deleteButton");
+                var updateButton = e.Item.FindControl("updateButton");
+                var cancelButton = e.Item.FindControl("cancelButton");
+
+                if (editButton != null)
+                {
+                    editButton.Visible = true;
+                }
+
+                if (deleteButton != null)
+                {
+                    deleteButton.Visible = true;
+                }
+
+                if (updateButton != null)
+                {
+                    updateButton.Visible = true;
+                }
+
+                if (cancelButton != null)
+                {
+                    cancelButton.Visible = true;
+                }
+            }
         }
 
         protected void OnItemEditing(object sender, ListViewEditEventArgs e)

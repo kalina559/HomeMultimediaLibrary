@@ -69,6 +69,8 @@ input[type="select"] {
 }
 
 .library-item-table {
+    border-collapse: collapse;
+    border-color: #404258
 }
 
 .search-results-div {
@@ -88,5 +90,5 @@ td, th {
 }
 
 .item-image {
-    max-width: 300px;
+    max-width: 200px;
 }

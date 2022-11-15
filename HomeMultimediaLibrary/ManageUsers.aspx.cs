@@ -28,6 +28,7 @@ namespace HomeMultimediaLibrary
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            GetUserRoles();
             RedirectIfUserNotInRole("admin", "~/Default");
 
             if (!IsPostBack)
