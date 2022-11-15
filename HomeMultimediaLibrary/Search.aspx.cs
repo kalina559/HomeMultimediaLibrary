@@ -349,6 +349,8 @@ namespace HomeMultimediaLibrary
 
         protected void OnSearchButtonClick(object sender, EventArgs e)
         {
+            ItemListView.EditIndex = -1;
+
             DataPager pager = ItemListView.FindControl("DataPager") as DataPager;
             if (pager != null)
             {
