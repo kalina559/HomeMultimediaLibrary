@@ -41,17 +41,15 @@ namespace HomeMultimediaLibrary
         {
             var currentItem = items.ElementAt(e.Item.DataItemIndex);
             var image = e.Item.FindControl("itemImage") as System.Web.UI.WebControls.Image;
-            if(ItemListView.EditIndex != e.Item.DisplayIndex)
+
+
+            if(ItemListView.EditIndex == -1 && ItemListView.EditIndex != e.Item.DisplayIndex)
             {
-                
                 if (image != null)
                 {
                     image.ImageUrl = currentItem.Image?.Base64;
                 }
 
-            } else
-            {
-                e.Item.FindControl("itemImage").Visible = false;
             }
 
             var lengthTextBox = e.Item.FindControl("lengthTextBox") as TextBox;

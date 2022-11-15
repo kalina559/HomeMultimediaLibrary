@@ -115,6 +115,8 @@ namespace HomeMultimediaLibrary
 
                 ClearInputs(ctrl.Controls);
             }
+
+            imagePreview.ImageUrl = "";
         }
 
         private void AddBookItem(ApplicationDbContext context, ApplicationUser user)
@@ -210,7 +212,7 @@ namespace HomeMultimediaLibrary
 
         public static System.Drawing.Image resizeImage(System.Drawing.Image imgToResize, int newHeight)
         {
-            double aspectRatio = imgToResize.Width / imgToResize.Height;
+            double aspectRatio = (double)imgToResize.Width / imgToResize.Height;
             int newWidth = (int)Math.Ceiling(newHeight * aspectRatio);
             return (System.Drawing.Image)(new Bitmap(imgToResize, new Size(newWidth, newHeight)));
         }
