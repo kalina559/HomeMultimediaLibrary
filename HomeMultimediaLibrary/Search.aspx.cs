@@ -79,7 +79,6 @@ namespace HomeMultimediaLibrary
                     typeTextBox.Text = TYPE_MAGAZINE;
                 }
 
-                ShowButtonsForAdmin(e);
             }
             else if (currentItem is MultimediaItem multimediaItem)
             {
@@ -102,7 +101,7 @@ namespace HomeMultimediaLibrary
                 }
             }
 
-
+            ShowButtonsForAdmin(e);
             typeTextBox.Width = 65;
         }
 
