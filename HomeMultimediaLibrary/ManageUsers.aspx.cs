@@ -119,7 +119,7 @@ namespace HomeMultimediaLibrary
 
         protected void OnItemDeleting(object sender, ListViewDeleteEventArgs e)
         {
-            string userId = users.ElementAt(UsersListView.EditIndex + currentPageStartRowIndex).Id;
+            string userId = users.ElementAt(e.ItemIndex + currentPageStartRowIndex).Id;
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var user = manager.FindById(userId);
 

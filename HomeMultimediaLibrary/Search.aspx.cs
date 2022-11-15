@@ -2,13 +2,10 @@
 using HomeMultimediaLibrary.Models.Entities;
 using HomeMultimediaLibrary.Models.Entities.Items;
 using HomeMultimediaLibrary.Pages;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -43,12 +40,18 @@ namespace HomeMultimediaLibrary
         protected void OnItemDataBound(object sender, ListViewItemEventArgs e)
         {
             var currentItem = items.ElementAt(e.Item.DataItemIndex);
-
-            // something wrong here
             var image = e.Item.FindControl("itemImage") as System.Web.UI.WebControls.Image;
-            if (image != null)
+            if(ItemListView.EditIndex != e.Item.DisplayIndex)
             {
-                image.ImageUrl = currentItem.Image?.Base64;
+                
+                if (image != null)
+                {
+                    image.ImageUrl = currentItem.Image?.Base64;
+                }
+
+            } else
+            {
+                e.Item.FindControl("itemImage").Visible = false;
             }
 
             var lengthTextBox = e.Item.FindControl("lengthTextBox") as TextBox;
@@ -99,6 +102,8 @@ namespace HomeMultimediaLibrary
                 }
             }
 
+
+            typeTextBox.Width = 65;
         }
 
         private void ShowButtonsForAdmin(ListViewItemEventArgs e)
@@ -137,6 +142,19 @@ namespace HomeMultimediaLibrary
             ItemListView.EditIndex = e.NewEditIndex;
             ItemListView.DataSource = items;
             RebindTable();
+
+            setImageColumnVisibility(false);
+        }
+
+        private void setImageColumnVisibility(bool value)
+        {
+            var imageHeader = ItemListView.FindControl("imageHeader");
+            imageHeader.Visible = value;
+
+            foreach (ListViewItem row in ItemListView.Items)
+            {
+                row.FindControl("itemImage").Visible = value;
+            }
         }
 
         protected void OnItemUpdating(object sender, ListViewUpdateEventArgs e)
@@ -178,12 +196,14 @@ namespace HomeMultimediaLibrary
 
             ItemListView.EditIndex = -1;
             RebindTable();
+            setImageColumnVisibility(true);
         }
 
         protected void OnItemCanceling(object sender, ListViewCancelEventArgs e)
         {
             ItemListView.EditIndex = -1;
             RebindTable();
+            setImageColumnVisibility(true);
         }
 
         protected void OnItemDeleting(object sender, ListViewDeleteEventArgs e)
@@ -206,6 +226,7 @@ namespace HomeMultimediaLibrary
         {
             ItemListView.EditIndex = -1;
             currentPageStartRowIndex = e.StartRowIndex;
+            setImageColumnVisibility(true);
         }
 
         private void LoadDatabaseTable(int? itemsToTake = null, IEnumerable<string> names = null, IEnumerable<string> authors = null)

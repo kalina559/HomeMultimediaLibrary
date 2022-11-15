@@ -1,4 +1,4 @@
 ﻿<asp:Label runat="server" SkinId="labelTxt" BackColor="#DEBACE" ></asp:Label>
 <asp:Button runat="server" SkinId="buttonTxt" BackColor="#DEBACE" borderColor="#DEBACE"></asp:Button>
 <asp:Panel runat="server" SkinId="backgroundColor" BackColor="White" ></asp:Panel>
-<asp:TextBox runat="server" SkinId="textBoxCell" BackColor="#White" ></asp:TextBox>
+<asp:TextBox runat="server" SkinId="textBoxCell" BackColor="White" ></asp:TextBox>

@@ -42,11 +42,11 @@
                 <LayoutTemplate>
                     <table class="library-item-table" border="3">
                         <tr>
-                            <th>Type
+                            <th class="type-column">Type
                             </th>
                             <th>Name
                             </th>
-                            <th>Author id
+                            <th>Author
                             </th>
                             <th>Publisher
                             </th>
@@ -56,7 +56,7 @@
                             </th>
                             <th>ISBN
                             </th>
-                            <th>Image
+                            <th id="imageHeader" runat="server">Image
                             </th>
                         </tr>
                         <asp:PlaceHolder runat="server" ID="groupPlaceHolder"></asp:PlaceHolder>
@@ -111,7 +111,7 @@
                 </ItemTemplate>
                 <EditItemTemplate>
                     <td>
-                        <asp:TextBox BorderWidth="0" ReadOnly="true" ID="TypeTextBox" runat="server" />
+                        <asp:TextBox BorderWidth="0" ReadOnly="true" SkinID="textBoxCell" ID="TypeTextBox" runat="server" />
                     </td>
                     <td>
                         <asp:TextBox ID="editNameTextBox" runat="server" Text='<%# Eval("Name") %>'></asp:TextBox>

@@ -70,7 +70,8 @@ input[type="select"] {
 
 .library-item-table {
     border-collapse: collapse;
-    border-color: #404258
+    border-color: #404258;
+    width: 100%
 }
 
 .search-results-div {
@@ -91,4 +92,8 @@ td, th {
 
 .item-image {
     max-width: 200px;
+}
+
+.type-column {
+    width: 100px
 }
